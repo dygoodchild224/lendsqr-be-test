@@ -1,0 +1,1 @@
+{"version":3,"file":"transaction.model.d.ts","sourceRoot":"","sources":["../../src/models/transaction.model.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAE,MAAM,UAAU,CAAC;AAEvC,eAAO,MAAM,gBAAgB;wBACD,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;8BAIrB,MAAM,GAAG,OAAO,CAAC,WAAW,EAAE,CAAC;CAMhE,CAAC"}
