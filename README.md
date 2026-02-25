@@ -59,7 +59,7 @@ The project follows a layered architecture separating concerns into controllers,
 Since a full authentication system was out of scope, a UUID token is generated on user creation and stored in the database. Every protected request must include this token as a Bearer token in the Authorization header. The middleware looks up the token in the database and attaches the user to the request object.
 
 ### Karma Blacklist Check
-Before onboarding any user, the system checks the Lendsqr Adjutor Karma API to verify the user is not blacklisted. If the user is blacklisted, a 403 response is returned and the account is not created.
+Before onboarding any user, the system calls the Lendsqr Adjutor Karma API at `https://adjutor.lendsqr.com/v2/verification/karma/{identity}` to verify the user is not blacklisted. If the API returns a match, the user registration is rejected with a 403 Forbidden response and the account is not created. The Adjutor API is fully integrated and live.
 
 ### Transaction Scoping
 All wallet operations (fund, transfer, withdraw) are wrapped in Knex database transactions. This ensures that if any part of the operation fails, the entire operation is rolled back — preventing partial updates or inconsistent balances.
@@ -71,7 +71,7 @@ UUIDs are used as primary keys instead of auto-increment integers for better sec
 
 ## ER Diagram
 
-![ER Diagram](./er-diagram.png)
+![ER Diagram](./lendsqr_wallet_1.png)
 
 ### Tables
 
@@ -109,6 +109,7 @@ UUIDs are used as primary keys instead of auto-increment integers for better sec
 ---
 
 ## Project Structure
+
 ```
 lendsqr-wallet-service/
 ├── src/
@@ -138,7 +139,7 @@ lendsqr-wallet-service/
 │   │   └── index.ts           # TypeScript interfaces
 │   ├── app.ts                 # Express app setup
 │   └── server.ts              # Server entry point
-├── .env                       # Environment variables
+├── .env.example               # Environment variables template
 ├── knexfile.ts                # Knex configuration
 ├── package.json
 ├── tsconfig.json
@@ -157,7 +158,7 @@ lendsqr-wallet-service/
 
 **1 — Clone the repository:**
 ```bash
-git clone https://github.com/your-username/lendsqr-be-test.git
+git clone https://github.com/dygoodchild224/lendsqr-be-test.git
 cd lendsqr-be-test
 ```
 
@@ -217,7 +218,7 @@ npm run dev
 
 ### Base URL
 ```
-http://localhost:3000/api/v1
+https://collins-henry-lendsqr-be-test.up.railway.app/api/v1
 ```
 
 ### Authentication
@@ -384,6 +385,7 @@ POST /api/v1/wallet/withdraw
 ---
 
 ## Running Tests
+
 ```bash
 # Run all tests
 npm test
@@ -396,16 +398,20 @@ npm run test:coverage
 
 ## Deployment
 
-The API is deployed at:
+The API is deployed on Railway at:
+
 ```
 https://collins-henry-lendsqr-be-test.up.railway.app
 ```
 
----
+### Live API Base URL
 
-## Live API
-
-Base URL:
 ```
-https://collins-henry-lendsqr-be-test.up.railway.app
+https://collins-henry-lendsqr-be-test.up.railway.app/api/v1
+```
+
+### GitHub Repository
+
+```
+https://github.com/dygoodchild224/lendsqr-be-test
 ```
