@@ -398,7 +398,7 @@ npm run test:coverage
 
 The API is deployed at:
 ```
-https://your-name-lendsqr-be-test.up.railway.app
+https://collins-henry-lendsqr-be-test.up.railway.app
 ```
 
 ---
@@ -407,5 +407,5 @@ https://your-name-lendsqr-be-test.up.railway.app
 
 Base URL:
 ```
-https://your-name-lendsqr-be-test.up.railway.app
+https://collins-henry-lendsqr-be-test.up.railway.app
 ```
